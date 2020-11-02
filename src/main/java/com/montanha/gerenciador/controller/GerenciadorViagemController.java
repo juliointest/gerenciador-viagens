@@ -101,7 +101,7 @@ public class GerenciadorViagemController {
 		}
 
 		response.setData(viagemDtoResponse);
-		
+
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
