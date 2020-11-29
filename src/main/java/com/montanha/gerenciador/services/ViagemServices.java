@@ -33,6 +33,22 @@ public class ViagemServices {
 	@Autowired
 	private ObjectMapper mapper;
 
+	public Viagem AvaliarUmaViagem(Viagem viagem, int nota) {
+		if (viagem != null) {
+			throw new ViagemException("Viagem não pode ser nula");
+		}
+
+		if (viagem.foiFinalizada()) {
+			if (nota >= 1 && nota < 5) {
+				return viagemRepository.avaliar(viagem, nota);
+			} else {
+				throw new ViagemException("Avaliação deve estar entre 1 e 5");
+			}
+		} else {
+			throw new ViagemException("Finalize a viagem antes de avaliá-la");
+		}
+	}
+
 	public List<Viagem> listar() {
 		return viagemRepository.findAll();
 	}
